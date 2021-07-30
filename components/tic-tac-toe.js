@@ -1,20 +1,21 @@
-import { useEffect, useRef } from 'react'
+import styles from '../styles/sheet.module.css'
 
-import draw from '../modules/draw'
-import scale from '../modules/scale'
-
-export default function TicTacToe() {
-  const canvasRef = useRef(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    const context = canvas.getContext('2d')
-
-    scale({ canvas, context })
-    draw({ canvas, context })
-  }, [])
-
+function Square({ square }) {
   return (
-    <canvas ref={canvasRef} />
+    <div className={styles.square}>
+    </div>
+  )
+
+}
+
+export default function TicTacToe({ squares }) {
+  return (
+    <div className={styles.container}>
+      {squares.map((square) => {
+        return (
+          <Square key={square} />
+        )
+      })}
+    </div>
   )
 }

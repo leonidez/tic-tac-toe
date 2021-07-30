@@ -1,6 +1,22 @@
 .container {
-  align-items: center;
+  align-content: flex-start;
   display: flex;
+  flex-wrap: wrap;
+  height: 450px;
+  width: 450px;
+}
+
+.square {
+  display: inline-block;
+  border: 2px solid black;
+  outline: 2px solid black;
+  height: 45px;
+  width: 45px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
   height: 100%;
   justify-content: center;
 }
