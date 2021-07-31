@@ -23,11 +23,11 @@ export default function Square({ id }) {
     if (letter) { return }
 
     setLetter(turns.next)
-    setTurns((state) => {
-      state[state.next].push(id)
-      state.next = (state.next === 'x') ? 'o' : 'x'
-      return state
-    })
+    setTurns((state) => ({
+      ...state,
+      [state.next]: [...state[state.next], id],
+      next: (state.next === 'x') ? 'o' : 'x',
+    }))
   }
 
   return (

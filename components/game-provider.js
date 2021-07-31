@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 const GameContext = createContext()
 
@@ -8,9 +8,10 @@ export function useGame() {
 
 export default function GameProvider({ children }) {
   const [turns, setTurns] = useState({
-    x: [],
-    o: [],
+    active: [],
     next: 'x',
+    o: [],
+    x: [],
   })
 
   const context = {
