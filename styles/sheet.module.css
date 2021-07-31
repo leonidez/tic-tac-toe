@@ -2,10 +2,10 @@
   align-content: flex-start;
   display: flex;
   flex-wrap: wrap;
-  height: calc(var(--size) * 10);
-  max-height: 550px;
-  width: calc(var(--size) * 10);
-  max-width: 550px;
+  height: calc(var(--size) * 9);
+  max-height: 495px;
+  width: calc(var(--size) * 9);
+  max-width: 495px;
 }
 
 .letter {
