@@ -11,7 +11,11 @@ export default function TicTacToe({ squares }) {
   useEffect(() => {
     const { x, o } = turns
     const active = getActiveSquares({ x, o })
-    console.log(active)
+
+    setTurns((state) => ({
+      ...state,
+      active,
+    }))
   }, [turns.next])
 
   return (

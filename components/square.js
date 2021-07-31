@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { animated, useSpring } from 'react-spring'
 import styles from '../styles/sheet.module.css'
 import { useGame } from './game-provider'
@@ -6,6 +6,12 @@ import { useGame } from './game-provider'
 export default function Square({ id }) {
   const [letter, setLetter] = useState('')
   const { turns, setTurns } = useGame()
+
+  useEffect(() => {
+    if (turns.active.length && !turns.active.includes(id)) {
+      remove()
+    }
+  }, [turns.active])
 
   const [style, animation] = useSpring(() => ({
     opacity: 1,
@@ -21,6 +27,9 @@ export default function Square({ id }) {
 
   function takeTurn() {
     if (letter) { return }
+    if (turns.active.length && !turns.active.includes(id)) {
+      return
+    }
 
     setLetter(turns.next)
     setTurns((state) => ({
