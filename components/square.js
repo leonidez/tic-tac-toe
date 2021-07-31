@@ -1,7 +1,12 @@
+import { useState } from 'react'
 import { animated, useSpring } from 'react-spring'
 import styles from '../styles/sheet.module.css'
+import { useGame } from './game-provider'
 
 export default function Square({ id }) {
+  const [letter, setLetter] = useState('')
+  const { turns, setTurns } = useGame()
+
   const [style, animation] = useSpring(() => ({
     opacity: 1,
     transform: 'rotate(0turn)'
@@ -15,6 +20,14 @@ export default function Square({ id }) {
   }
 
   function takeTurn() {
+    if (letter) { return }
+
+    setLetter(turns.next)
+    setTurns((state) => {
+      state[state.next].push(id)
+      state.next = (state.next === 'x') ? 'o' : 'x'
+      return state
+    })
   }
 
   return (
@@ -24,8 +37,8 @@ export default function Square({ id }) {
       style={style}>
       <span 
         className={styles.letter}>
+        {letter.toUpperCase()}
       </span>
     </animated.div>
   )
 }
-
