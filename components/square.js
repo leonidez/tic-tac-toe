@@ -46,6 +46,7 @@ export default function Square({ id }) {
       style={style}>
       <span 
         className={styles.letter}>
+          {id}
         {letter.toUpperCase()}
       </span>
     </animated.div>
