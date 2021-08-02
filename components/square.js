@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { animated, useSpring } from 'react-spring'
+import { animated, config, useSpring } from 'react-spring'
 import styles from '../styles/sheet.module.css'
 import { useGame } from './game-provider'
 
@@ -14,14 +14,20 @@ export default function Square({ id }) {
   }, [turns.active])
 
   const [style, animation] = useSpring(() => ({
+    border: '2px solid black',
+    outline: '2px solid black',
     opacity: 1,
-    transform: 'rotate(0turn)'
+    transform: 'rotate(0turn)',
+    config: config.slow,
   }))
 
   function remove() {
     animation.start({
+      border: '0px solid black',
+      outline: '0px solid black',
       opacity: 0,
-      transform: 'rotate(-0.15turn)'
+      transform: 'rotate(-0.125turn)',
+      config: config.slow
     })
   }
 
@@ -46,8 +52,8 @@ export default function Square({ id }) {
       style={style}>
       <span 
         className={styles.letter}>
-          {id}
         {letter.toUpperCase()}
+        {id}
       </span>
     </animated.div>
   )
