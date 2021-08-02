@@ -1,27 +1,119 @@
-import { intersection } from 'lodash'
-import { 
-  defaultAdjacent,
-  firstColumnAdjacent,
-  secondColumnAdjacent,
-  eighthColumnAdjacent,
-  ninthColumnAdjacent 
-} from './adjacent-fns'
+export function defaultAdjacent(id) {
+  return [
+    id - 10,
+    id - 9,
+    id - 8,
+    id - 1,
+    id,
+    id + 1,
+    id + 8,
+    id + 9,
+    id + 10,
+    id - 20,
+    id - 19,
+    id - 18,
+    id - 17,
+    id - 16,
+    id - 11,
+    id - 7,
+    id - 2,
+    id + 2,
+    id + 7,
+    id + 11, 
+    id + 16, 
+    id + 17, 
+    id + 18, 
+    id + 19, 
+    id + 20, 
+  ]
+}
 
-export default function getAdjacentIds(ids) {
-  const adjacents = ids.map((id) => {
-    switch (id % 9) {
-      case 0:
-        return firstColumnAdjacent(id)
-      case 1:
-        return secondColumnAdjacent(id)
-      case 7:
-        return eighthColumnAdjacent(id)
-      case 8:
-        return ninthColumnAdjacent(id) 
-      default:
-        return defaultAdjacent(id)
-    }
-  })
+export function firstColumnAdjacent(id) {
+  return [
+    id - 9,
+    id - 8,
+    id,
+    id + 1,
+    id + 9,
+    id + 10,
+    id - 18,
+    id - 17,
+    id - 16,
+    id - 7,
+    id + 2,
+    id + 11, 
+    id + 18, 
+    id + 19, 
+    id + 20, 
+  ]
+}
 
-  return intersection(...adjacents)
+export function secondColumnAdjacent(id) {
+  return [
+    id - 10,
+    id - 9,
+    id - 8,
+    id - 1,
+    id,
+    id + 1,
+    id + 8,
+    id + 9,
+    id + 10,
+    id - 19,
+    id - 18,
+    id - 17,
+    id - 16,
+    id - 7,
+    id + 2,
+    id + 11, 
+    id + 17, 
+    id + 18, 
+    id + 19, 
+    id + 20, 
+  ]
+}
+
+export function eighthColumnAdjacent(id) {
+  return [
+    id - 10,
+    id - 9,
+    id - 8,
+    id - 1,
+    id,
+    id + 1,
+    id + 8,
+    id + 9,
+    id + 10,
+    id - 20,
+    id - 19,
+    id - 18,
+    id - 17,
+    id - 11,
+    id - 2,
+    id + 7,
+    id + 16, 
+    id + 17, 
+    id + 18, 
+    id + 19, 
+  ]
+}
+
+export function ninthColumnAdjacent(id) {
+  return [
+    id - 10,
+    id - 9,
+    id - 1,
+    id,
+    id + 8,
+    id + 9,
+    id - 20,
+    id - 19,
+    id - 18,
+    id - 11,
+    id - 2,
+    id + 7,
+    id + 16, 
+    id + 17, 
+    id + 18, 
+  ]
 }
