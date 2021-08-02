@@ -74,7 +74,28 @@ export function secondColumnAdjacent(id) {
 }
 
 export function eighthColumnAdjacent(id) {
-
+  return [
+    id - 10,
+    id - 9,
+    id - 8,
+    id - 1,
+    id,
+    id + 1,
+    id + 8,
+    id + 9,
+    id + 10,
+    id - 20,
+    id - 19,
+    id - 18,
+    id - 17,
+    id - 11,
+    id - 2,
+    id + 7,
+    id + 16, 
+    id + 17, 
+    id + 18, 
+    id + 19, 
+  ]
 }
 
 export function ninthColumnAdjacent(id) {
