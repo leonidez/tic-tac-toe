@@ -7,8 +7,12 @@ export default function Square({ id }) {
   const [letter, setLetter] = useState('')
   const { turns, setTurns } = useGame()
 
+  function isIneligible() {
+    return turns.active.length && !turns.active.includes(id)
+  }
+
   useEffect(() => {
-    if (turns.active.length && !turns.active.includes(id)) {
+    if (isIneligible()) {
       remove()
     }
   }, [turns.active])
@@ -17,8 +21,7 @@ export default function Square({ id }) {
     border: '2px solid black',
     outline: '2px solid black',
     opacity: 1,
-    transform: 'rotate(0turn)',
-    config: config.slow,
+    transform: 'rotate(0turn) scale(1)',
   }))
 
   function remove() {
@@ -26,14 +29,13 @@ export default function Square({ id }) {
       border: '0px solid black',
       outline: '0px solid black',
       opacity: 0,
-      transform: 'rotate(-0.125turn)',
-      config: config.slow
+      transform: 'rotate(-0.125turn) scale(0.2)',
+      config: config.molasses,
     })
   }
 
   function takeTurn() {
-    if (letter) { return }
-    if (turns.active.length && !turns.active.includes(id)) {
+    if (letter || isIneligible()) {
       return
     }
 
@@ -53,7 +55,6 @@ export default function Square({ id }) {
       <span 
         className={styles.letter}>
         {letter.toUpperCase()}
-        {id}
       </span>
     </animated.div>
   )

@@ -1,3 +1,4 @@
+import { intersection } from 'lodash'
 import { 
   defaultAdjacent,
   firstColumnAdjacent,
@@ -7,7 +8,7 @@ import {
 } from './adjacent-fns'
 
 export default function getAdjacentIds(ids) {
-  return ids.map((id) => {
+  const adjacents = ids.map((id) => {
     switch (id % 9) {
       case 0:
         return firstColumnAdjacent(id)
@@ -21,4 +22,6 @@ export default function getAdjacentIds(ids) {
         return defaultAdjacent(id)
     }
   })
+
+  return intersection(...adjacents)
 }
