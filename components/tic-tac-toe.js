@@ -3,13 +3,11 @@ import { useEffect, useState } from 'react'
 import { useGame } from './game-provider'
 import Square from './square'
 
-import checkGame from '../modules/check-game'
 import getActiveSquares from '../modules/get-active-squares'
 import styles from '../styles/sheet.module.css'
 
 export default function TicTacToe({ squares }) {
-  const [winner, setWinner] = useState()
-  const { turns, setTurns } = useGame()
+  const { turns, setTurns, winner } = useGame()
 
   useEffect(() => {
     const { x, o } = turns
@@ -19,13 +17,6 @@ export default function TicTacToe({ squares }) {
       ...state,
       active,
     }))
-  }, [turns.next])
-
-  useEffect(() => {
-    const winner = checkGame(turns)
-    if (winner) {
-      setWinner(winner)
-    }
   }, [turns.next])
 
   return (
