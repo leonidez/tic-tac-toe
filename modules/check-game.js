@@ -1,43 +1,50 @@
+function listHasIds({ at, list, id }) {
+  const winner = (
+    list.indexOf(id - at) !== -1 &&
+    list.indexOf(id + at) !== -1
+  )
+
+  if (winner) {
+    return [id - at, id, id + at]
+  } else {
+    return false
+  }
+}
+
+function check(list) {
+  for (let id of list) {
+    const across = listHasIds({ at: 1, list, id })
+    const down = listHasIds({ at: 9, list, id })
+
+    const diagonal = (
+      listHasIds({ list, id, at: 8 }) ||
+      listHasIds({ list, id, at: 10 })
+    )
+    
+    const winner = (across || down || diagonal)
+
+    if (winner) { return winner }
+  }
+}
+
 export default function checkGame(turns) {
   const { x, o } = turns
-  console.log(x)
+
   if (x.length >= 3) {
-    for (let i = 0; i < x.length; i++) {
-      const across = (
-        x.indexOf(x[i] - 1) !== -1 &&
-        x.indexOf(x[i] + 1) !== -1
-      )
-
-      if (across) {
-        return {
-          letter: 'x',
-        }
-      }
-
-      const down = (
-        x.indexOf(x[i] - 9) !== -1 &&
-        x.indexOf(x[i] + 9) !== -1
-      )
-
-      if (down) {
-        return {
-          letter: 'x',
-        }
-      }
-
-      const diagonal = (
-        x.indexOf(x[i] - 8) !== -1 &&
-        x.indexOf(x[i] + 8) !== -1
-      ) || (
-        x.indexOf(x[i] - 10) !== -1 &&
-        x.indexOf(x[i] + 10) !== -1
-      )
-
-      if (diagonal) {
-        return {
-          letter: 'x',
-        }
-      }
+    const winningSquares = check(x)
+ 
+    if (winningSquares) {
+      return winningSquares
     }
   }
+
+  if (o.length >= 3) {
+    const winningSquares = check(o)
+ 
+    if (winningSquares) {
+      return winningSquares
+    }
+  }
+
+  return false
 }

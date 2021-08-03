@@ -22,7 +22,6 @@ export default function TicTacToe({ squares }) {
   }, [turns.next])
 
   useEffect(() => {
-    console.log('here')
     const winner = checkGame(turns)
     if (winner) {
       setWinner(winner)
@@ -32,12 +31,12 @@ export default function TicTacToe({ squares }) {
   return (
     <div 
       className={styles.container}>
-      {winner && <p>winner is {winner.letter}</p>}
       {squares.map((square) => {
         return (
           <Square 
+            id={square}
             key={square} 
-            id={square} />
+            winner={winner} />
         )
       })}
     </div>
