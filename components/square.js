@@ -3,9 +3,10 @@ import { animated, config, useSpring } from 'react-spring'
 import styles from '../styles/sheet.module.css'
 import { useGame } from './game-provider'
 
-export default function Square({ id }) {
+export default function Square({ id, isWinningSquare }) {
   const [letter, setLetter] = useState('')
   const { turns, setTurns } = useGame()
+  const color = isWinningSquare ? 'red' : 'black'
 
   function isIneligible() {
     return turns.active.length && !turns.active.includes(id)
@@ -18,8 +19,8 @@ export default function Square({ id }) {
   }, [turns.active])
 
   const [style, animation] = useSpring(() => ({
-    border: '2px solid black',
-    outline: '2px solid black',
+    border: '1px solid black',
+    outline: '1px solid black',
     opacity: 1,
     transform: 'rotate(0turn) scale(1)',
   }))
@@ -51,7 +52,7 @@ export default function Square({ id }) {
     <animated.div 
       className={styles.square} 
       onClick={takeTurn}
-      style={style}>
+      style={{...style, color }}>
       <span 
         className={styles.letter}>
         {letter.toUpperCase()}

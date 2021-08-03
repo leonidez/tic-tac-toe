@@ -32,11 +32,12 @@ export default function TicTacToe({ squares }) {
     <div 
       className={styles.container}>
       {squares.map((square) => {
+        const isWinningSquare = winner && winner.includes(square)
         return (
           <Square 
             id={square}
             key={square} 
-            winner={winner} />
+            isWinningSquare={isWinningSquare} />
         )
       })}
     </div>
