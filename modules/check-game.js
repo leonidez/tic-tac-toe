@@ -34,7 +34,10 @@ export default function checkGame(turns) {
     const winningSquares = check(x)
  
     if (winningSquares) {
-      return winningSquares
+      return {
+        letter: 'x',
+        squares: winningSquares
+      }
     }
   }
 
@@ -42,7 +45,10 @@ export default function checkGame(turns) {
     const winningSquares = check(o)
  
     if (winningSquares) {
-      return winningSquares
+      return {
+        letter: 'o',
+        squares: winningSquares
+      }
     }
   }
 
