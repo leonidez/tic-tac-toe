@@ -4,9 +4,13 @@ import styles from '../styles/sheet.module.css'
 import { useGame } from './game-provider'
 
 export default function Square({ id, isWinningSquare }) {
-  const [letter, setLetter] = useState('')
   const { setTurns, turns, winner } = useGame()
   const color = isWinningSquare ? 'red' : 'black'
+
+  const hasX = turns.x.includes(id)
+  const hasO = turns.o.includes(id)
+
+  const letter = hasX ? 'x' : (hasO ? 'o' : '')
 
   function isIneligible() {
     return turns.active.length && !turns.active.includes(id)
@@ -40,7 +44,6 @@ export default function Square({ id, isWinningSquare }) {
       return
     }
 
-    setLetter(turns.next)
     setTurns((state) => ({
       ...state,
       [state.next]: [...state[state.next], id],
