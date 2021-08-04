@@ -8,6 +8,11 @@
   max-width: 495px;
 }
 
+.heading {
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
 .letter {
   align-items: center;
   display: flex;
@@ -30,8 +35,9 @@
 }
 
 .wrapper {
-  display: flex;
   align-items: center;
-  height: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   justify-content: center;
 }
