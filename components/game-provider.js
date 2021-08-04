@@ -8,7 +8,7 @@ export function useGame() {
 }
 
 export default function GameProvider({ children }) {
-  const [winner, setWinner] = useState()
+  const [winner, setWinner] = useState(null)
   const [turns, setTurns] = useState({
     active: [],
     next: 'x',
@@ -23,10 +23,21 @@ export default function GameProvider({ children }) {
     }
   }, [turns.next])
 
+  function reset() {
+    setWinner(null)
+    setTurns({
+      active: [],
+      next: 'x',
+      o: [],
+      x: [],
+    })
+  }
+
   const context = {
     setTurns,
     turns,
     winner,
+    reset,
   }
 
   return (
