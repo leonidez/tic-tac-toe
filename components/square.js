@@ -5,7 +5,7 @@ import { useGame } from './game-provider'
 
 export default function Square({ id, isWinningSquare }) {
   const [letter, setLetter] = useState('')
-  const { turns, setTurns } = useGame()
+  const { setTurns, turns, winner } = useGame()
   const color = isWinningSquare ? 'red' : 'black'
 
   function isIneligible() {
@@ -36,7 +36,7 @@ export default function Square({ id, isWinningSquare }) {
   }
 
   function takeTurn() {
-    if (letter || isIneligible()) {
+    if (winner || letter || isIneligible()) {
       return
     }
 

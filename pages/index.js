@@ -7,7 +7,7 @@ const squares = Array.from(Array(81).keys())
 export default function Home() {
   return (
     <GameProvider>
-      <h1 className={styles.heading}>X versus O </h1>
+      <h1 className={styles.heading}>X vs O </h1>
       <div className={styles.wrapper}>
         <TicTacToe squares={squares} />
       </div>
