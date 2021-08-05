@@ -38,3 +38,8 @@ p {
   font-family: 'Cheltenham';
   src: url('/fonts/NYTCheltenhamExtraBold.otf');
 }
+
+@font-face {
+  font-family: 'Franklin';
+  src: url('/fonts/NYTFranklinBold.otf');
+}
