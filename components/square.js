@@ -29,10 +29,6 @@ export default function Square({ id, isWinningSquare }) {
     }
   }, [turns.active])
 
-  useEffect(() => {
-    removed ? remove() : add()
-  }, [removed])
-
   const [style, animation] = useSpring(() => ({
     border: '1px solid black',
     outline: '1px solid black',
@@ -59,6 +55,10 @@ export default function Square({ id, isWinningSquare }) {
       config: config.molasses,
     })
   }
+
+  useEffect(() => {
+    removed ? remove() : add()
+  }, [removed])
 
   function takeTurn() {
     if (winner || letter || isIneligible()) {

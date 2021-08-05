@@ -32,6 +32,17 @@
   max-width: 55px;
 }
 
+.statusBar {
+  align-items: center;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 59px;
+  width: 100%;
+}
+
 .wrapper {
   align-items: center;
   display: flex;

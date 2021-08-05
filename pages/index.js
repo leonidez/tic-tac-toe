@@ -8,9 +8,7 @@ export default function Home() {
   return (
     <GameProvider>
       <h1 className={styles.heading}>X vs O </h1>
-      <div className={styles.wrapper}>
-        <TicTacToe squares={squares} />
-      </div>
+      <TicTacToe squares={squares} />
     </GameProvider>
   )
 }

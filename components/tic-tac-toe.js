@@ -6,17 +6,21 @@ import Square from './square'
 import getActiveSquares from '../modules/get-active-squares'
 import styles from '../styles/sheet.module.css'
 
-function VictoryMessage() {
+function StatusBar() {
   const { reset, winner } = useGame()
 
   return (
-    <>
-      <p>{winner.letter.toUpperCase()} is the winner</p>
-      <button
-        onClick={reset}>
-        Play Again
-      </button>
-    </>
+    <div className={styles.statusBar}>
+      {winner && (
+        <>
+          <p>{winner.letter.toUpperCase()} is the winner</p>
+          <button
+            onClick={reset}>
+            Play Again
+          </button>
+        </>
+      )}
+    </div>
   )
 }
 
@@ -35,18 +39,20 @@ export default function TicTacToe({ squares }) {
 
   return (
     <>
-      {winner && <VictoryMessage />}
-      <div 
-        className={styles.container}>
-        {squares.map((square) => {
-          const isWinningSquare = winner && winner.squares.includes(square)
-          return (
-            <Square 
-              id={square}
-              key={square} 
-              isWinningSquare={isWinningSquare} />
-          )
-        })}
+      <StatusBar />
+      <div className={styles.wrapper}>
+        <div 
+          className={styles.container}>
+          {squares.map((square) => {
+            const isWinningSquare = winner && winner.squares.includes(square)
+            return (
+              <Square 
+                id={square}
+                key={square} 
+                isWinningSquare={isWinningSquare} />
+            )
+          })}
+        </div>
       </div>
     </>
   )
