@@ -33,3 +33,8 @@ h1 {
 p {
   margin: 0;
 }
+
+@font-face {
+  font-family: 'Cheltenham';
+  src: url('/fonts/NYTCheltenhamExtraBold.otf');
+}

@@ -10,12 +10,14 @@
 
 .heading {
   border-bottom: 1px solid black;
+  font-family: 'Cheltenham';
   text-align: center;
 }
 
 .letter {
   align-items: center;
   display: flex;
+  font-family: 'Cheltenham';
   font-size: min(calc(var(--size) / 2), 27px);
   font-weight: bold;
   height: 100%;
@@ -41,6 +43,10 @@
   position: absolute;
   top: 59px;
   width: 100%;
+}
+
+.text {
+  font-family: 'Cheltenham';
 }
 
 .wrapper {

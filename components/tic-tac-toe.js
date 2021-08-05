@@ -13,7 +13,10 @@ function StatusBar() {
     <div className={styles.statusBar}>
       {winner && (
         <>
-          <p>{winner.letter.toUpperCase()} is the winner</p>
+          <p className={styles.text}>
+            {`${winner.letter.toUpperCase()} `}
+            is the winner
+          </p>
           <button
             onClick={reset}>
             Play Again
