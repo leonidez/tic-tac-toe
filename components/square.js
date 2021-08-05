@@ -4,6 +4,7 @@ import styles from '../styles/sheet.module.css'
 import { useGame } from './game-provider'
 
 export default function Square({ id, isWinningSquare }) {
+  const [removed, setRemoved] = useState(false)
   const { setTurns, turns, winner } = useGame()
   const color = isWinningSquare ? 'red' : 'black'
 
@@ -16,11 +17,21 @@ export default function Square({ id, isWinningSquare }) {
     return turns.active.length && !turns.active.includes(id)
   }
 
+  function isReset() {
+    return removed && !turns.x.length && !turns.o.length
+  }
+
   useEffect(() => {
-    if (isIneligible()) {
-      remove()
+    if (isReset()) {
+      setRemoved(false)
+    } else if (isIneligible()) {
+      setRemoved(true)
     }
   }, [turns.active])
+
+  useEffect(() => {
+    removed ? remove() : add()
+  }, [removed])
 
   const [style, animation] = useSpring(() => ({
     border: '1px solid black',
@@ -28,6 +39,16 @@ export default function Square({ id, isWinningSquare }) {
     opacity: 1,
     transform: 'rotate(0turn) scale(1)',
   }))
+
+  function add() {
+    animation.start({
+      border: '1px solid black',
+      outline: '1px solid black',
+      opacity: 1,
+      transform: 'rotate(0turn) scale(1)',
+      config: config.default,
+    })
+  }
 
   function remove() {
     animation.start({
