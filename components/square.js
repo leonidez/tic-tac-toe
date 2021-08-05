@@ -6,7 +6,7 @@ import { useGame } from './game-provider'
 export default function Square({ id, isWinningSquare }) {
   const [removed, setRemoved] = useState(false)
   const { setTurns, turns, winner } = useGame()
-  const color = isWinningSquare ? 'red' : 'black'
+  const color = isWinningSquare ? 'crimson' : 'black'
 
   const hasX = turns.x.includes(id)
   const hasO = turns.o.includes(id)
