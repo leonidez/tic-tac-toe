@@ -1,31 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { useGame } from './game-provider'
 import Square from './square'
+import StatusBar from './status-bar'
 
 import getActiveSquares from '../modules/get-active-squares'
 import styles from '../styles/sheet.module.css'
-
-function StatusBar() {
-  const { reset, winner } = useGame()
-
-  return (
-    <div className={styles.statusBar}>
-      {winner && (
-        <>
-          <p className={styles.text}>
-            {`${winner.letter.toUpperCase()} `}
-            is the winner
-          </p>
-          <button
-            onClick={reset}>
-            Play Again
-          </button>
-        </>
-      )}
-    </div>
-  )
-}
 
 export default function TicTacToe({ squares }) {
   const { turns, setTurns, winner } = useGame()
