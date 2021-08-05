@@ -32,7 +32,7 @@ function check(list) {
     }
   }
 
-  return uniq(result)
+  return result ? uniq(result) : result
 }
 
 export default function checkGame(turns) {
