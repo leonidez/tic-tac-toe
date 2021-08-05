@@ -1,3 +1,5 @@
+import { uniq } from 'lodash'
+
 function listHasIds({ at, list, id }) {
   const winner = (
     list.indexOf(id - at) !== -1 &&
@@ -12,6 +14,8 @@ function listHasIds({ at, list, id }) {
 }
 
 function check(list) {
+  let result = false
+
   for (let id of list) {
     const across = listHasIds({ at: 1, list, id })
     const down = listHasIds({ at: 9, list, id })
@@ -23,8 +27,12 @@ function check(list) {
     
     const winner = (across || down || diagonal)
 
-    if (winner) { return winner }
+    if (winner) {
+      result = result ? result.concat(winner) : winner
+    }
   }
+
+  return uniq(result)
 }
 
 export default function checkGame(turns) {
